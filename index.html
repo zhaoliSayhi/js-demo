@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event bus</title>
+</head>
+<body>
+
+<div class="event">
+  <div>
+    <input type="text" class="input">
+    <div class="emit">emit</div>
+  </div>
+
+  <div>
+    <div class="on">on</div>
+  </div>
+
+</div>
+
+<script type="module">
+
+  import Event from "./src/event.js";
+
+  const e = new Event({});
+
+  const text = document.querySelector('.text');
+  const emitBtn = document.querySelector('.emit');
+
+  emitBtn.addEventListener('click', () => {
+    e.emit('test', document.querySelector('.input').value)
+  }, false);
+
+  e.on('test', (v) => {
+    text.innerHTML = v;
+  })
+
+</script>
+</body>
+</html>

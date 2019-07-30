@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>analysis qrcode</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.2.0/dist/jsQR.min.js"></script>
+<style>
+</style>
+<body>
+<div class="qrcode">
+  <canvas id="decode-canvas"></canvas>
+  <div>
+    <input type="file" accept="image/*" id="decode-file">
+  </div>
+  <br />
+  <button id="decode-btn">点这里解码</button>
+</div>
+
+<script type="module">
+  import Decode from './src/index.js';
+
+  const deCode = new Decode();
+
+  function $(c) {
+    return document.querySelector(c);
+  };
+
+  const input = $('#decode-file');
+  const btn = $('#decode-btn');
+
+
+  input.addEventListener('input', (e) => {
+    deCode.inputChange(e);
+  });
+
+  btn.addEventListener('click', () => {
+    deCode.decode();
+  });
+
+</script>
+</body>
+</html>

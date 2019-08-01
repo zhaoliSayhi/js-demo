@@ -15,8 +15,17 @@
   </div>
 
   <div>
-    <span class="emit">emit：</span>
-    <span class="text"></span>
+    <span class="subs-1">订阅 1.</span>
+    <span class="text1"></span>
+  </div>
+
+  <div>
+    <span class="subs-2">订阅 2.</span>
+    <span class="text2"></span>
+  </div>
+
+  <div>
+    <span class="emit">发布</span>
   </div>
 
 </div>
@@ -27,16 +36,27 @@
 
   const e = new Event({});
 
-  const text = document.querySelector('.text');
+  const text1 = document.querySelector('.text1');
+  const text2 = document.querySelector('.text2');
   const emitBtn = document.querySelector('.emit');
+  const subBtn1 = document.querySelector('.subs-1');
+  const subBtn2 = document.querySelector('.subs-2');
 
   emitBtn.addEventListener('click', () => {
     e.emit('test', document.querySelector('.input').value)
   }, false);
 
-  e.on('test', (v) => {
-    text.innerHTML = v;
-  })
+  subBtn1.addEventListener('click', () => {
+    e.on('test', (v) => {
+      text1.innerHTML = `I am sub 1 - ${v}`;
+    })
+  }, false);
+
+  subBtn2.addEventListener('click', () => {
+    e.on('test', (v) => {
+      text2.innerHTML = `I am sub 2 - ${v}`;
+    })
+  }, false);
 
 </script>
 </body>

@@ -4,7 +4,7 @@ export default class Event {
   }
   on(msgName, func) {
     if (this.msgQueues.hasOwnProperty(msgName)) {
-      if (typeof this.msgQueues === "function") this.msgQueues[msgName] = [this.msgQueues[msgName], func];
+      if (typeof this.msgQueues[msgName] === "function") this.msgQueues[msgName] = [this.msgQueues[msgName], func];
       else this.msgQueues[msgName] = [...this.msgQueues[msgName], func];
     } else {
       this.msgQueues[msgName] = func;
@@ -16,7 +16,7 @@ export default class Event {
   }
 
   emit(msgName, msg) {
-    if (!this.msgQueues.hasOwnProperty(msgName)) return;
+    if (!this.msgQueues.hasOwnProperty(msgName)) return alert(`无 ${msgName} 消息订阅`);
     if (typeof this.msgQueues[msgName] === 'function') {
       this.msgQueues[msgName](msg);
     }
